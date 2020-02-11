@@ -1,7 +1,7 @@
 // CodeHunter.cpp : Defines the entry point for the console application.
 
 //Found Compile Time Error Here.  This line is not needed and breaks this version of Visual Studio.  This was only valid in Visual Studio 2017 for a different type of project.
-//#include "pch.h" 
+//#include "pch.h"
 #include <iostream>
 #include <string>
 
@@ -27,16 +27,26 @@ int main()
 
 	for (int i = 0; i < textToAnalyze.length(); ++i)
 	{
+		//This is checking to see if the current letter is a vowel or not.
 		if (textToAnalyze[i] == 'a' || textToAnalyze[i] == 'e' || textToAnalyze[i] == 'i' ||
 			textToAnalyze[i] == 'o' || textToAnalyze[i] == 'u' || textToAnalyze[i] == 'A' ||
 			textToAnalyze[i] == 'E' || textToAnalyze[i] == 'I' || textToAnalyze[i] == 'O' ||
 			textToAnalyze[i] == 'U')
 		{
-			--vowels;
+			//If it is a vowel it will run this code and should add to the vowel count.
+			//However, this is an error because it is subtracting from our vowel count.
+			//Fix
+			//--vowels;
+			//Fixed
+			vowels++;
 		}
 		else if ((textToAnalyze[i] >= 'a' && textToAnalyze[i] <= 'z') || (textToAnalyze[i] >= 'A' && textToAnalyze[i] <= 'Z'))
 		{
+			//Error: "++consonants;" shouldn't be commented out. Causes program to not count any of the consonants in the user input.
+			//Fix
 			//++consonants;
+			//Fixed
+			consonants++;
 		}
 		else if (textToAnalyze[i] >= '0' && textToAnalyze[i] <= '9')
 		{
