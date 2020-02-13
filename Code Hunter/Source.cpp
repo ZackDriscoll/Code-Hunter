@@ -1,4 +1,5 @@
 // CodeHunter.cpp : Defines the entry point for the console application.
+//Edited by: Zack Driscoll
 
 //Found Compile Time Error Here.  This line is not needed and breaks this version of Visual Studio.  This was only valid in Visual Studio 2017 for a different type of project.
 //#include "pch.h"
@@ -11,7 +12,12 @@ using namespace std;
 int main()
 {
 	string textToAnalyze;
-	int foo = 0;
+
+	//Useless variable. Never called by the program and it serves no purpose.
+	//Fix:
+	//int foo = 0;
+	
+	//Variables to hold the number of vowels, consonants, numbers, spaces, unknown characters, the length of the user input, and the sum of characters in the user input.
 	int vowels = 0;
 	int consonants = 0;
 	int digits = 0;
@@ -19,12 +25,20 @@ int main()
 	int lengthOfStringSubmittedForAnalysis = 0;
 	int unknownCharacters = 0;
 	int checkSum = 0;
-	int bar = 0;
 
+	//Another useless variable that is never called and serves no purpose.
+	//Fix:
+	//int bar = 0;
+
+	//Output to welcome the user and give instructions.
+	//Minor fix. Added '\n' to make the output look nicer for the user.
 	cout << "Welcome to the CIA code Hunter Program!" << endl;
-	cout << "Please type in text to analyze: " << endl;
+	cout << "Please type in text to analyze: \n" << endl;
+
+	//Code to allow access user input.
 	getline(cin, textToAnalyze);
 
+	//Loop to analyze the user input.
 	for (int i = 0; i < textToAnalyze.length(); ++i)
 	{
 		//This is checking to see if the current letter is a vowel or not.
@@ -42,6 +56,8 @@ int main()
 		}
 		else if ((textToAnalyze[i] >= 'a' && textToAnalyze[i] <= 'z') || (textToAnalyze[i] >= 'A' && textToAnalyze[i] <= 'Z'))
 		{
+			//This 'else if' looks for consonants and adds them to the variable if they are one.
+			
 			//Error: "++consonants;" shouldn't be commented out. Causes program to not count any of the consonants in the user input.
 			//Fix
 			//++consonants;
@@ -50,22 +66,28 @@ int main()
 		}
 		else if (textToAnalyze[i] >= '0' && textToAnalyze[i] <= '9')
 		{
+			//Checks for numbers.
 			++digits;
 		}
 		else if (textToAnalyze[i] == ' ')
 		{
+			//Checks for spaces.
 			++spaces;
 		}
 		else
 		{
+			//Checks for any symbol/character that the program doesn't recognize.
 			++unknownCharacters;
 		}
 	}
 
+	//Gets the length of the user input and adds the variables to get the character count.
 	lengthOfStringSubmittedForAnalysis = textToAnalyze.length();
 	checkSum = unknownCharacters + vowels + consonants + digits + spaces;
 
-	cout << "Vowels: " << vowels << endl;
+	//Prints out results of the program and prints them for the user.
+	//Minor fix. Added '\n' to make the output look nicer for the user.
+	cout << "\nVowels: " << vowels << endl;
 	cout << "Consonants: " << consonants << endl;
 	cout << "Digits: " << digits << endl;
 	cout << "White spaces: " << spaces << endl;
@@ -73,13 +95,15 @@ int main()
 	cout << "Number of characters CodeHunter could not identify: " << unknownCharacters << endl;
 	cout << "Checksum: " << checkSum << endl;
 
+	//Checks to see if the Analysis is valid and print out a message depending on the result.
+	//Minor fix. Added '\n' to make the output look nicer for the user.
 	if (checkSum == lengthOfStringSubmittedForAnalysis)
 	{
-		cout << "This program self checking has found this Analysis to be valid." << endl;
+		cout << "\nThis program self checking has found this Analysis to be valid." << endl;
 	}
 	else
 	{
-		cout << "WARNING! *** This program self checking has found this Analysis to be invalid! Do not use this data!" << endl;
+		cout << "\nWARNING! *** This program self checking has found this Analysis to be invalid! Do not use this data!" << endl;
 	}
 
 	system("pause");
